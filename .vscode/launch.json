@@ -1,0 +1,40 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Portfolio (Localhost Apache)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost/Adet%20portfolio/index.html",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Launch Experiment 1: Terminal Wanderer (Localhost)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost/Adet%20portfolio/Experiment/Experiment%201/index.html",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Launch Experiment 2: Arduino Crossword (Localhost)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost/Adet%20portfolio/Experiment/Experiment%202/index.html",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Launch with Live Server (127.0.0.1:5500)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://127.0.0.1:5500/index.html",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Launch Portfolio in Microsoft Edge",
+            "type": "msedge",
+            "request": "launch",
+            "url": "http://localhost/Adet%20portfolio/index.html",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}

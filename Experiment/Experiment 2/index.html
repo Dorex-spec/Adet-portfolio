@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino Function Crossword | ADET 211 Experiment 02</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Navigation Header -->
+    <header class="crossword-top-bar">
+        <a href="../../index.html#experiment" class="btn btn-secondary back-portfolio-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            <span>Exit to Portfolio</span>
+        </a>
+        <div class="game-brand">
+            <span class="game-badge">EXPERIMENT 02</span>
+            <span class="game-title">ARDUINO FUNCTION CROSSWORD</span>
+        </div>
+        <div class="top-bar-actions">
+            <!-- Puzzle Level Selector -->
+            <select class="puzzle-select-dropdown" id="puzzleSelect">
+                <option value="0">Puzzle 1: Digital I/O &amp; Core</option>
+                <option value="1">Puzzle 2: Analog &amp; Timing</option>
+                <option value="2">Puzzle 3: Serial &amp; Modules</option>
+            </select>
+            <button class="btn btn-secondary btn-sm" id="restartPuzzleBtn" title="Reset current puzzle">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                <span>Restart</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Game Container -->
+    <main class="crossword-container">
+        
+        <!-- Left Panel: Crossword Grid Board -->
+        <section class="board-panel">
+            <div class="panel-header">
+                <div>
+                    <h3 id="puzzleThemeTitle">Digital I/O &amp; Core Execution</h3>
+                    <span class="panel-subtitle">Intersecting Arduino C++ Microcontroller Functions</span>
+                </div>
+                <div class="board-stats-pill">
+                    Solved: <strong id="solvedCount">0</strong> / <span id="totalWordsCount">8</span>
+                </div>
+            </div>
+
+            <!-- The Crossword Grid Canvas / Table -->
+            <div class="grid-board-wrapper">
+                <div class="crossword-grid" id="crosswordGrid">
+                    <!-- Dynamically populated letter and blank cells -->
+                </div>
+            </div>
+
+            <!-- Rules / Attempt Protocol Box -->
+            <div class="rules-card">
+                <div class="rules-header">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <span>CROSSWORD GUESS RULES</span>
+                </div>
+                <p class="rules-text">
+                    Select any word to guess its letters. You have <strong>5 Max Tries</strong> per word. After <strong>4 wrong tries</strong>, a diagnostic hint reveals <strong>one letter</strong>. If you reach <strong>5 failed tries</strong>, you <strong>lose the game</strong>!
+                </p>
+            </div>
+        </section>
+
+        <!-- Right Panel: Active Word Solver, Virtual Keyboard & Clues -->
+        <section class="solver-panel">
+            
+            <!-- Active Word Inspector & Guesser Card -->
+            <div class="active-word-card" id="activeWordCard">
+                <div class="active-word-header">
+                    <div class="word-meta">
+                        <span class="direction-badge" id="activeDirBadge">1 ACROSS</span>
+                        <span class="word-length-pill" id="activeLenBadge">7 Letters</span>
+                    </div>
+                    <!-- 5-Try Attempt Meter -->
+                    <div class="attempts-meter-box">
+                        <span class="attempts-label">Failed Guesses:</span>
+                        <div class="attempts-pills" id="attemptsPills">
+                            <span class="pill-dot"></span>
+                            <span class="pill-dot"></span>
+                            <span class="pill-dot"></span>
+                            <span class="pill-dot"></span>
+                            <span class="pill-dot"></span>
+                        </div>
+                        <span class="attempts-num" id="attemptsCountDisplay">0 / 5</span>
+                    </div>
+                </div>
+
+                <!-- Clue Prompt -->
+                <div class="clue-display-box">
+                    <span class="clue-tag">FUNCTION CLUE:</span>
+                    <p class="clue-text" id="activeClueText">Configures digital pin behavior as INPUT, OUTPUT, or INPUT_PULLUP.</p>
+                </div>
+
+                <!-- 4th-Try Hint Notification Banner (Reveals 1 Letter) -->
+                <div class="hint-alert-banner" id="hintAlertBanner" style="display: none;">
+                    <div class="hint-title">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                        <span>4 TRIES EXCEEDED &bull; AUTOMATIC HINT ACTIVATED!</span>
+                    </div>
+                    <p class="hint-body" id="hintBodyText">
+                        System telemetry has revealed one hidden letter: '<strong id="hintLetterChar">P</strong>'! Here is the code syntax: <code id="hintCodeSnippet">pinMode(pin, mode);</code>
+                    </p>
+                </div>
+
+                <!-- Active Word Letter Slots -->
+                <div class="letter-slots-row" id="letterSlotsRow">
+                    <!-- Populated dynamically: e.g. [_] [_] [_] [_] [_] [_] [_] -->
+                </div>
+
+                <!-- Guess Input Field & Action Buttons -->
+                <div class="guess-input-group">
+                    <input type="text" class="guess-input" id="guessInput" placeholder="Type a letter or full word..." maxlength="20" autocomplete="off" spellcheck="false">
+                    <button class="btn btn-primary" id="submitGuessBtn">Submit Guess</button>
+                </div>
+
+                <!-- Virtual On-Screen Tactile Keyboard -->
+                <div class="virtual-keyboard" id="virtualKeyboard">
+                    <!-- QWERTY rows -->
+                </div>
+            </div>
+
+            <!-- Clues Accordion / Tabs: Across & Down -->
+            <div class="clues-card">
+                <div class="clues-header-tabs">
+                    <span class="clues-header-title">Clues Directory</span>
+                    <div class="clue-nav-buttons">
+                        <button class="clue-nav-btn" id="prevWordBtn" title="Previous Word">&larr; Prev</button>
+                        <button class="clue-nav-btn" id="nextWordBtn" title="Next Word">Next &rarr;</button>
+                    </div>
+                </div>
+
+                <div class="clues-columns">
+                    <!-- Across Clues List -->
+                    <div class="clues-column">
+                        <h4 class="clue-group-heading">ACROSS</h4>
+                        <ul class="clues-list" id="acrossCluesList">
+                            <!-- Populated dynamically -->
+                        </ul>
+                    </div>
+
+                    <!-- Down Clues List -->
+                    <div class="clues-column">
+                        <h4 class="clue-group-heading">DOWN</h4>
+                        <ul class="clues-list" id="downCluesList">
+                            <!-- Populated dynamically -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Game Over / Lockout Modal (Triggered on 5 Failed Guesses) -->
+    <div class="modal-backdrop" id="lossModal" style="display: none;">
+        <div class="modal-box loss-box">
+            <div class="modal-icon">&#x26A0;</div>
+            <h2 class="modal-title">System Lockout: You Lose!</h2>
+            <p class="modal-desc" id="lossModalDesc">
+                You failed to guess the Arduino function within the allowed <strong>5 guesses</strong>. Telemetry diagnostics have severed the logic connection.
+            </p>
+            <div class="modal-solution-box">
+                <span class="sol-label">Correct Arduino Function:</span>
+                <span class="sol-word" id="lossCorrectWord">PINMODE</span>
+                <code class="sol-code" id="lossCorrectCode">pinMode(13, OUTPUT);</code>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="tryAgainBtn">⚡ Reboot &amp; Try Again</button>
+                <a href="../../index.html#experiment" class="btn btn-secondary">Exit to Portfolio</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Victory Modal (Triggered when Crossword is Fully Solved) -->
+    <div class="modal-backdrop" id="victoryModal" style="display: none;">
+        <div class="modal-box victory-box">
+            <div class="modal-icon">&#x2714;</div>
+            <h2 class="modal-title">Crossword Completed!</h2>
+            <p class="modal-desc">
+                Outstanding! You have successfully decrypted all Arduino functions on this crossword board without triggering system lockout.
+            </p>
+            <div class="victory-stats-summary">
+                <div class="v-stat">
+                    <span>Words Solved</span>
+                    <span id="vSolvedWords">8 / 8</span>
+                </div>
+                <div class="v-stat">
+                    <span>Total Attempts</span>
+                    <span id="vTotalAttempts">0</span>
+                </div>
+                <div class="v-stat">
+                    <span>Accuracy</span>
+                    <span id="vAccuracy">100%</span>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="nextPuzzleBtn">Load Next Puzzle &rarr;</button>
+                <button class="btn btn-secondary" id="replayPuzzleBtn">Replay Puzzle</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

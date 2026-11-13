@@ -1,0 +1,40 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Open Portfolio in Default Browser (Localhost)",
+            "type": "shell",
+            "command": "powershell -Command \"Start-Process 'http://localhost/Adet%20portfolio/index.html'\"",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Open Experiment 1 (Terminal Wanderer)",
+            "type": "shell",
+            "command": "powershell -Command \"Start-Process 'http://localhost/Adet%20portfolio/Experiment/Experiment%201/index.html'\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "Open Experiment 2 (Arduino Crossword)",
+            "type": "shell",
+            "command": "powershell -Command \"Start-Process 'http://localhost/Adet%20portfolio/Experiment/Experiment%202/index.html'\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "Start PHP Built-in Server (Port 8080)",
+            "type": "shell",
+            "command": "C:/xampp/php/php.exe -S localhost:8080 -t .",
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Check JavaScript Syntax",
+            "type": "shell",
+            "command": "node -c \"Experiment/Experiment 1/game.js\" && node -c \"Experiment/Experiment 2/game.js\"",
+            "problemMatcher": []
+        }
+    ]
+}

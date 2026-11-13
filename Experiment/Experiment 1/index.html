@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Wanderer | ADET 211 Experiment 01</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Navigation Header -->
+    <header class="game-top-bar">
+        <a href="../../index.html#experiment" class="btn btn-secondary back-portfolio-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            <span>Exit to Portfolio</span>
+        </a>
+        <div class="game-brand">
+            <span class="game-badge">EXPERIMENT 01</span>
+            <span class="game-title">TERMINAL WANDERER</span>
+        </div>
+        <div class="top-bar-actions">
+            <button class="btn btn-secondary btn-sm" id="inventoryBtn" title="Open Inventory & Loadout">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span>Inventory (<span id="invCountBadge">0</span>)</span>
+            </button>
+            <button class="btn btn-secondary btn-sm" id="restartGameBtn" title="Reset journey to starting sector">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                <span>Restart</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <!-- Left Panel: Grid Radar & Controls -->
+        <section class="game-panel map-panel">
+            <div class="panel-header">
+                <h3>Sector Radar</h3>
+                <span class="coordinates-pill" id="coordsDisplay">Sector [5, 5]</span>
+            </div>
+
+            <!-- Visual Grid Map with Player Dot -->
+            <div class="radar-card">
+                <div class="compass-indicator">
+                    <span id="compassFacing">Heading: NORTH</span>
+                    <span class="radar-window-pill" id="radarWindowPill">Window: X[1..9] Y[1..9]</span>
+                </div>
+                <div class="grid-radar" id="gridRadar">
+                    <!-- 9x9 Grid dynamically generated via JavaScript -->
+                </div>
+                <div class="radar-legend">
+                    <span class="legend-item"><span class="legend-dot player-dot"></span> Player</span>
+                    <span class="legend-item"><span class="legend-dot visited-dot"></span> Charted</span>
+                    <span class="legend-item"><span class="legend-dot unvisited-dot"></span> Unknown</span>
+                </div>
+            </div>
+
+            <!-- Energy Survival Guide -->
+            <div class="rule-hint-box">
+                <div class="rule-hint-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    <span>SURVIVAL PROTOCOL</span>
+                </div>
+                <p class="rule-hint-text">
+                    Each step consumes <strong>-2% Energy</strong>. Encounter chance is <strong>1/5 (20%) per move</strong> &mdash; bad luck can starve your reserves! Find <strong>Energy Drinks (+25%)</strong> in supply caches or loot them from defeated hostiles (Bandits, Soldiers, Scavengers). Crack the <strong>Arduino Quiz</strong> lock to survive!
+                </p>
+            </div>
+
+            <!-- Virtual D-Pad / WASD Controls -->
+            <div class="dpad-card">
+                <span class="dpad-hint">Control: <strong>W, A, S, D</strong> or Arrow Keys</span>
+                <div class="dpad-cluster">
+                    <button class="dpad-btn btn-up" id="btnUp" data-dir="north" title="Move North (W)">
+                        <span class="dpad-key">W</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+                    </button>
+                    <div class="dpad-row">
+                        <button class="dpad-btn btn-left" id="btnLeft" data-dir="west" title="Move West (A)">
+                            <span class="dpad-key">A</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                        </button>
+                        <button class="dpad-btn btn-down" id="btnDown" data-dir="south" title="Move South (S)">
+                            <span class="dpad-key">S</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <button class="dpad-btn btn-right" id="btnRight" data-dir="east" title="Move East (D)">
+                            <span class="dpad-key">D</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HUD Stats -->
+            <div class="stats-row">
+                <div class="stat-box">
+                    <span class="stat-label">Steps</span>
+                    <span class="stat-value" id="stepsCount">0</span>
+                </div>
+                <div class="stat-box energy-stat-box" id="energyBox">
+                    <div class="stat-subhead">
+                        <span class="stat-label">Energy</span>
+                        <span class="energy-drain-badge" title="Energy consumed per step">-2/step</span>
+                    </div>
+                    <span class="stat-value" id="energyLevel">100%</span>
+                    <div class="energy-meter-track">
+                        <div class="energy-meter-fill" id="energyMeterFill" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Drinks Drunk</span>
+                    <span class="stat-value" id="drinksCount">0</span>
+                </div>
+            </div>
+
+            <!-- Equipped Gear Summary & Ammo Pouch -->
+            <div class="equipped-gear-card">
+                <div class="equipped-gear-header">
+                    <span>EQUIPPED LOADOUT</span>
+                    <button class="gear-open-btn" id="manageLoadoutBtn">Open Backpack &rarr;</button>
+                </div>
+                <div class="gear-slot-row">
+                    <div class="gear-slot" id="slotWeapon">
+                        <span class="gear-slot-type">WEAPON</span>
+                        <span class="gear-slot-name" id="weaponNameDisplay">Unarmed (Shock Pulse)</span>
+                        <span class="gear-slot-detail" id="weaponDetailDisplay">DMG: 16-26 &bull; Melee</span>
+                    </div>
+                    <div class="gear-slot" id="slotArmor">
+                        <span class="gear-slot-type">BALLISTIC ARMOR</span>
+                        <span class="gear-slot-name" id="armorNameDisplay">None (Unprotected)</span>
+                        <span class="gear-slot-detail" id="armorDetailDisplay">⚠️ Fatal to Soldier 1-Shot</span>
+                    </div>
+                </div>
+                <!-- Ammo Pouch Strip -->
+                <div class="ammo-pouch-strip">
+                    <span class="ammo-pill">9mm: <strong id="ammo9mm">0</strong></span>
+                    <span class="ammo-pill">5.56: <strong id="ammo556">0</strong></span>
+                    <span class="ammo-pill">12G: <strong id="ammo12g">0</strong></span>
+                    <span class="ammo-pill">Cell: <strong id="ammoCell">0</strong></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Panel: Narrative & Encounters Console -->
+        <section class="game-panel encounter-panel">
+            <div class="panel-header">
+                <h3>Telemetry Encounter Log</h3>
+                <span class="status-indicator live"><span class="blink-dot"></span> LIVE FEED</span>
+            </div>
+
+            <!-- Active Encounter Card -->
+            <div class="active-encounter-card" id="encounterCard">
+                <div class="encounter-header-group">
+                    <span class="encounter-badge" id="encounterTypeBadge">EXPEDITION START</span>
+                    <h2 class="encounter-title" id="encounterTitle">Waking at Sector 5, 5</h2>
+                </div>
+                <p class="encounter-narrative" id="encounterDesc">
+                    You awaken inside an uncharted technological wasteland. Your wrist telemetry device pulses softly with coordinates. Four paths extend into the gloom: North, South, East, and West. Step into the grid to explore.
+                </p>
+                <div class="encounter-actions" id="encounterActions">
+                    <!-- Dynamic choice buttons inserted here -->
+                </div>
+            </div>
+
+            <!-- Event History Feed -->
+            <div class="history-card">
+                <div class="history-header">
+                    <span>Expedition Log Terminal</span>
+                    <button class="clear-log-btn" id="clearLogBtn">Clear Log</button>
+                </div>
+                <div class="history-log" id="historyLog">
+                    <div class="log-entry system">[SYSTEM] Navigation system initialized. Radar grid calibrated.</div>
+                    <div class="log-entry">[INIT] Awaiting player vector input (WASD).</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Inventory & Loadout Modal Backdrop -->
+    <div class="inventory-modal-backdrop" id="inventoryModal" style="display: none;">
+        <div class="inventory-modal-box">
+            <div class="inventory-modal-header">
+                <div class="inv-title-group">
+                    <h3>Wasteland Inventory &amp; Loadout</h3>
+                    <span class="inv-subtitle">70-Item Catalog &bull; Stored: <span id="invCountTitle">0</span> Items</span>
+                </div>
+                <button class="close-modal-btn" id="closeInventoryBtn" title="Close Backpack">&times;</button>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="inventory-tabs">
+                <button class="inv-tab active" data-tab="all">All (<span id="tabCountAll">0</span>)</button>
+                <button class="inv-tab" data-tab="WEAPON">Weapons (<span id="tabCountWeapons">0</span>)</button>
+                <button class="inv-tab" data-tab="AMMO">Ammo (<span id="tabCountAmmo">0</span>)</button>
+                <button class="inv-tab" data-tab="ARMOR">Armor (<span id="tabCountArmor">0</span>)</button>
+                <button class="inv-tab" data-tab="TOOL">Tools (<span id="tabCountTools">0</span>)</button>
+                <button class="inv-tab" data-tab="ELECTRONIC">Electronics (<span id="tabCountElec">0</span>)</button>
+                <button class="inv-tab" data-tab="CONSUMABLE">Consumables (<span id="tabCountConsumables">0</span>)</button>
+            </div>
+
+            <!-- Items Grid Container -->
+            <div class="inventory-grid-container" id="inventoryGrid">
+                <!-- Dynamically populated from state.inventory -->
+            </div>
+        </div>
+    </div>
+
+    <script src="items.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADET 211 Portfolio | Sean Joshua P. Matienzo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Mobile / Small Screens Navbar -->
+    <header class="mobile-navbar" id="mobileNavbar">
+        <div class="nav-brand">
+            <img src="photos/sm-logo.svg" alt="SM Monotone Logo" class="nav-sm-logo">
+            <span class="brand-badge">ADET 211</span>
+            <span class="brand-title">PORTFOLIO</span>
+        </div>
+        <button class="menu-toggle-btn" id="menuToggle" aria-label="Toggle navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </header>
+
+    <!-- Sidebar Backdrop for Mobile Overlay -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- Responsive Sidebar / Navigation Drawer -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Sidebar Brand / Header (Visible on Desktop) -->
+        <div class="sidebar-header">
+            <div class="brand-logo">
+                <div class="brand-logo-img">
+                    <img src="photos/sm-logo.svg" alt="SM Monotone Logo" class="sm-logo-icon">
+                </div>
+                <div class="logo-text">
+                    <h2>ADET 211</h2>
+                    <p>Sean Joshua Matienzo</p>
+                </div>
+            </div>
+            <button class="close-sidebar-btn" id="closeSidebar" aria-label="Close menu">&times;</button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <!-- Navigation Set 1 -->
+            <div class="nav-group">
+                <span class="nav-label">Main Navigation</span>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                <polyline points="9 22 9 12 15 12 15 22"/>
+                            </svg>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#profile" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#project" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            <span>Project</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#skills" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="18" height="18" x="3" y="3" rx="2"/>
+                                <path d="M9 9h6v6H9z"/>
+                                <path d="m9 3v6"/>
+                                <path d="m15 3v6"/>
+                                <path d="m9 15v6"/>
+                                <path d="m15 15v6"/>
+                            </svg>
+                            <span>Skills</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            <span>Contact</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#experiment" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10 2v7.31"/>
+                                <path d="M14 9.3V2"/>
+                                <path d="M8.5 2h7"/>
+                                <path d="M14 9.3a6.5 6.5 0 1 1-4 0"/>
+                                <path d="M5.52 16h12.96"/>
+                            </svg>
+                            <span>Experiment</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Monotone Break Line / Divider -->
+            <hr class="nav-divider">
+
+            <!-- Navigation Set 2 (External / Socials) -->
+            <div class="nav-group">
+                <span class="nav-label">Connect</span>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="https://github.com/Dorex-spec" target="_blank" rel="noopener noreferrer" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                <path d="M9 18c-4.51 2-5-2-7-2"/>
+                            </svg>
+                            <span>GitHub</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.facebook.com/sean.matienzo.2024/" target="_blank" rel="noopener noreferrer" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                            </svg>
+                            <span>Facebook</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=spmatienzo0210qc@student.fatima.edu.ph" target="_blank" rel="noopener noreferrer" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                            </svg>
+                            <span>Email</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <span class="footer-badge">ADET 211 Standard</span>
+            <p>&copy; 2026 Academic Portfolio</p>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="section hero-section" id="home">
+            <div class="hero-container">
+                <div class="hero-badge">Academic Documentation &amp; Innovation Lab</div>
+
+                <!-- Hero Photo in the Middle with SM Alternate / Fallback Logo -->
+                <div class="hero-image-container">
+                    <div class="hero-image-glow"></div>
+                    <div class="hero-image-ring"></div>
+                    <img src="photos/Hero%20photo.png" 
+                         alt="ADET 211 Hero Emblem" 
+                         class="hero-photo"
+                         onerror="this.style.display='none'; document.getElementById('heroFallbackLogo').style.display='flex';">
+                    <div id="heroFallbackLogo" class="hero-fallback-logo">
+                        <img src="photos/sm-logo.svg" alt="SM Monotone Logo" class="hero-sm-logo">
+                    </div>
+                </div>
+
+                <h1 class="hero-title">APPLICATION DEVELOPMENT &amp; EMERGING TECHNOLOGIES</h1>
+                <p class="hero-subtitle">ADET 211 &bull; Build. Code. Innovate.</p>
+                <p class="hero-description">
+                    Official laboratory portfolio following the prescribed standard. Containing mission logs, hardware diagrams, Arduino source implementations, and laboratory reflections.
+                </p>
+                <div class="hero-actions">
+                    <a href="#project" class="btn btn-primary">View Projects</a>
+                    <a href="#profile" class="btn btn-secondary">Student Profile</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section class="section" id="profile">
+            <div class="section-header">
+                <h2 class="section-title">Student Profile</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="profile-card">
+                <div class="profile-avatar">
+                    <img src="photos/sm-logo.svg" alt="SM Monotone Logo" class="profile-sm-logo">
+                </div>
+                <div class="profile-details">
+                    <h3>Sean Joshua P. Matienzo</h3>
+                    <p class="profile-meta">Student ID: 02230000210 | BSIT2 Y1-3</p>
+                    <div class="profile-info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Instructor</span>
+                            <span class="info-val">Darrel Rarang</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Academic Year</span>
+                            <span class="info-val">2026–2027</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Semester</span>
+                            <span class="info-val">1st Semester</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Date Submitted</span>
+                            <span class="info-val">[Date Submitted]</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Missions Section -->
+        <section class="section" id="missions">
+            <div class="section-header">
+                <h2 class="section-title">Missions</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="missions-grid">
+                <article class="mission-card">
+                    <div class="card-tag">Mission 00</div>
+                    <h3 class="card-title">Activate Your Development Station</h3>
+                    <p class="card-desc">Initial laboratory environment initialization, board communication, and diagnostic output verification.</p>
+                    <div class="card-meta">
+                        <span>Arduino UNO</span>
+                        <span>Prelims</span>
+                    </div>
+                </article>
+                <article class="mission-card">
+                    <div class="card-tag">Mission 01</div>
+                    <h3 class="card-title">Digital I/O &amp; Actuation</h3>
+                    <p class="card-desc">Breadboard logic prototyping, circuit assembly, and microcontroller timing sequences.</p>
+                    <div class="card-meta">
+                        <span>Circuits</span>
+                        <span>Prelims</span>
+                    </div>
+                </article>
+                <article class="mission-card">
+                    <div class="card-tag">Mission 02</div>
+                    <h3 class="card-title">Sensory Input &amp; Signals</h3>
+                    <p class="card-desc">Interfacing analog sensors, reading signal inputs, and processing serial telemetry.</p>
+                    <div class="card-meta">
+                        <span>Sensors</span>
+                        <span>Midterms</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Projects Section (Placed between Missions and Core Competencies) -->
+        <section class="section" id="project">
+            <div class="section-header">
+                <h2 class="section-title">Projects</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="project-grid">
+                <a href="project.html?id=1" class="project-card" aria-label="Open Project 1: Activate Dev Station & I2C LCD">
+                    <div class="project-card-inner">
+                        <div class="card-tag">Project 01 &bull; Hardware Build</div>
+                        <h3 class="card-title">Activate Dev Station &amp; I2C LCD</h3>
+                        <p class="card-desc">Board diagnostic verification, I2C address scanning (0x27), and liquid crystal character output with Arduino Uno.</p>
+                        <div class="card-meta">
+                            <span>Arduino UNO + I2C LCD</span>
+                            <span>Prelims</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="project.html?id=2" class="project-card" aria-label="Open Project 2: Digital I/O & Pushbutton Counter">
+                    <div class="project-card-inner">
+                        <div class="card-tag">Project 02 &bull; Interactive Circuit</div>
+                        <h3 class="card-title">Digital I/O &amp; Pushbutton Counter</h3>
+                        <p class="card-desc">Breadboard logic with tactile switch, 220Ω pulldown resistor, software debouncing, and real-time LCD state updates.</p>
+                        <div class="card-meta">
+                            <span>Circuits &amp; Pushbutton</span>
+                            <span>Prelims</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="project.html?id=3" class="project-card" aria-label="Open Project 3: Sensory Input & Telemetry Circuit">
+                    <div class="project-card-inner">
+                        <div class="card-tag">Project 03 &bull; Sensory Telemetry</div>
+                        <h3 class="card-title">Sensory Input &amp; Telemetry Circuit</h3>
+                        <p class="card-desc">Analog voltage telemetry acquisition, breadboard prototyping calibration, and serial diagnostic monitoring.</p>
+                        <div class="card-meta">
+                            <span>Sensors &amp; Telemetry</span>
+                            <span>Midterms</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <div class="section-header">
+                <div class="section-tag">03 / SKILLS</div>
+                <h2 class="section-title">Hardware &amp; Software Interests</h2>
+                <p class="section-subtitle">Technical areas I actively explore, study, and build with.</p>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="skills-column-grid">
+                <!-- Part 1: Interest & Pursue (Logic End) -->
+                <div class="skills-column-card">
+                    <h3 class="skills-col-title">Interest &amp; Pursue</h3>
+                    <p class="skills-col-desc">Logic-end programming, algorithm structure, and backend architecture explored independently.</p>
+                    <div class="skills-items-list">
+                        <div class="skill-row">
+                            <span class="skill-name">Java</span>
+                            <span class="skill-tag">Logic / OOP</span>
+                        </div>
+                        <div class="skill-row">
+                            <span class="skill-name">C Language</span>
+                            <span class="skill-tag">Systems / Logic</span>
+                        </div>
+                        <div class="skill-row">
+                            <span class="skill-name">Python</span>
+                            <span class="skill-tag">Scripting / Logic</span>
+                        </div>
+                        <div class="skill-row">
+                            <span class="skill-name">PHP (Logic End)</span>
+                            <span class="skill-tag">Backend / Logic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 2: School Requirement -->
+                <div class="skills-column-card">
+                    <h3 class="skills-col-title">School Requirements</h3>
+                    <p class="skills-col-desc">Core web technologies and embedded systems required across BSIT academic coursework.</p>
+                    <div class="skills-items-list">
+                        <div class="skill-row">
+                            <span class="skill-name">HTML5</span>
+                            <span class="skill-tag">Frontend</span>
+                        </div>
+                        <div class="skill-row">
+                            <span class="skill-name">CSS3</span>
+                            <span class="skill-tag">Layout &amp; Styling</span>
+                        </div>
+                        <div class="skill-row">
+                            <span class="skill-name">PHP</span>
+                            <span class="skill-tag">Server-Side Web</span>
+                        </div>
+                        <div class="skill-row">
+                            <span class="skill-name">Arduino &amp; Embedded</span>
+                            <span class="skill-tag">Hardware / ADET</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 3: Core Competence -->
+                <div class="skills-column-card">
+                    <h3 class="skills-col-title">Core Competence</h3>
+                    <p class="skills-col-desc">Essential problem-solving mindset and adaptability applied throughout laboratory missions.</p>
+                    <div class="skills-items-list">
+                        <div class="skill-row">
+                            <span class="skill-name">Problem Solving</span>
+                            <span class="skill-tag">Foundation</span>
+                        </div>
+                        <div class="skill-row">
+                            <span class="skill-name">Adaptability</span>
+                            <span class="skill-tag">Mindset</span>
+                        </div>
+                        <div class="skill-row">
+                            <span class="skill-name">Analytical Troubleshooting</span>
+                            <span class="skill-tag">Diagnostics</span>
+                        </div>
+                        <div class="skill-row">
+                            <span class="skill-name">Technical Communication</span>
+                            <span class="skill-tag">Collaboration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experiment Section -->
+        <section class="section" id="experiment">
+            <div class="section-header">
+                <h2 class="section-title">Laboratory Experiments &amp; Interactive Games</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="games-grid">
+                <!-- Game 01: Terminal Wanderer (Active) -->
+                <div class="game-card active-game">
+                    <div>
+                        <div class="game-card-header">
+                            <span class="game-tag">EXPERIMENT 01 &bull; 2D EXPLORATION</span>
+                            <span class="game-status-badge live">&#x25CF; PLAYABLE</span>
+                        </div>
+                        <h3 class="game-card-title">Terminal Wanderer</h3>
+                        <p class="game-card-desc">
+                            A monotone text-based wasteland exploration game. Every step costs -2% Energy with a 1/5 encounter rate per move. Discover locked Energy Drinks (+25%) in supply caches or battle Bandits, Soldiers, and Scavengers. Crack the Arduino hardware and code quiz to survive!
+                        </p>
+                    </div>
+                    <div class="game-card-actions">
+                        <span class="status-indicator live"><span class="blink-dot"></span> Online</span>
+                        <a href="Experiment/Experiment 1/index.html" class="btn btn-primary btn-sm">Launch Game &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Game 02: Arduino Function Crossword (Active) -->
+                <div class="game-card active-game">
+                    <div>
+                        <div class="game-card-header">
+                            <span class="game-tag">EXPERIMENT 02 &bull; WORD PUZZLE</span>
+                            <span class="game-status-badge live">&#x25CF; PLAYABLE</span>
+                        </div>
+                        <h3 class="game-card-title">Arduino Function Crossword</h3>
+                        <p class="game-card-desc">
+                            Intersecting C++ microcontroller function crossword. Test your syntax knowledge with pinMode, digitalWrite, delay, and more. Exceeding 4 failed tries unlocks an emergency diagnostic hint revealing one letter; failing 5 tries triggers immediate system lockout!
+                        </p>
+                    </div>
+                    <div class="game-card-actions">
+                        <span class="status-indicator live"><span class="blink-dot"></span> Online</span>
+                        <a href="Experiment/Experiment 2/index.html" class="btn btn-primary btn-sm">Launch Crossword &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Game 03: In Development -->
+                <div class="game-card">
+                    <div>
+                        <div class="game-card-header">
+                            <span class="game-tag">EXPERIMENT 03</span>
+                            <span class="game-status-badge">IN DEV</span>
+                        </div>
+                        <h3 class="game-card-title">Interactive Module 03</h3>
+                        <p class="game-card-desc">
+                            Final emerging technology experiment module scheduled for prototyping after Game 01 and Game 02 verification.
+                        </p>
+                    </div>
+                    <div class="game-card-actions">
+                        <span class="status-indicator">Awaiting Build</span>
+                        <button class="btn btn-secondary btn-sm" disabled style="opacity: 0.5; cursor: not-allowed;">Coming Soon</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <div class="section-header">
+                <h2 class="section-title">Contact &amp; Submission Channels</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-card">
+                <p>For inquiries, portfolio reviews, or lab verification submissions:</p>
+                <div class="contact-links">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=spmatienzo0210qc@student.fatima.edu.ph" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Send Email (Gmail)</a>
+                    <a href="https://github.com/Dorex-spec" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub Profile</a>
+                    <a href="https://www.facebook.com/sean.matienzo.2024/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Facebook Channel</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

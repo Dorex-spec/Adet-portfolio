@@ -1,0 +1,15 @@
+# OS files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+.DS_Store
+
+# Temporary / editor backup files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Log files
+*.log
